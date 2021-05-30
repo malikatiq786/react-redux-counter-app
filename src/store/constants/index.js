@@ -1,1 +1,1 @@
-export {INC,DEC} from './count';
+export {INC,DEC,SETUSERS} from './count';

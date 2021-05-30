@@ -1,6 +1,7 @@
 import * as Actions from "../constants/index"
 const initialState = {
   count: 0,
+  users:[]
 };
 
 const Reducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const Reducer = (state = initialState, action) => {
         return{
           count:state.count -1
         }
+
+        case Actions.SETUSERS:
+          return{
+            users: action.users,
+          }
     
     default:
       return state;
