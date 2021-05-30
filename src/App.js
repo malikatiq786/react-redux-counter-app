@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react"
 import axios from 'axios';
 
-const App = ({ count,users, inc, dec ,setUsers}) => {
+const App = ({ count,users, inc, dec ,setUsers, deleteUser}) => {
 
   useEffect(() => {
     axios.get("https://reqres.in/api/users?page=2")
@@ -35,14 +35,15 @@ const App = ({ count,users, inc, dec ,setUsers}) => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr>
+          {users.map((user, index) => (
+            <tr  key={index}>
               <td>{user.id}</td>
               <td>{user.email}</td>
               <td>{user.first_name}</td>
               <td>
                 <img src={user.avatar} alt={user.first_name} />
               </td>
+              <td><a onClick={()=>deleteUser(user.id)} key={user.id}>Delete</a></td>
             </tr>
           ))}
         </tbody>
@@ -64,6 +65,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     inc: () => dispatch({ type: Actions.INC }),
     dec: () => dispatch({ type: Actions. DEC}),
+    deleteUser: () => dispatch({type: Actions.DELETEPOST}),
     setUsers: (users) => dispatch({ type :Actions.SETUSERS,users})
 
   }

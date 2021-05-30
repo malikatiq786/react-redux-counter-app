@@ -20,6 +20,13 @@ const Reducer = (state = initialState, action) => {
           return{
             users: action.users,
           }
+
+      case Actions.DELETEPOST:
+        return {
+            ...state,
+            users: [...state.users.filter(item => item.id !== action.id)],
+
+        };
     
     default:
       return state;
